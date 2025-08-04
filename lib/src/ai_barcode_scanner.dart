@@ -120,6 +120,8 @@ class AiBarcodeScanner extends StatefulWidget {
   /// Defaults to `false`.
   final bool returnImage;
 
+  final bool showGalleryButton;
+
   const AiBarcodeScanner({
     super.key,
     this.fit = BoxFit.cover,
@@ -150,6 +152,7 @@ class AiBarcodeScanner extends StatefulWidget {
     this.flashOnIcon = CupertinoIcons.bolt_fill,
     this.flashOffIcon = CupertinoIcons.bolt,
     this.returnImage = false,
+    this.showGalleryButton = false,
   });
 
   @override
@@ -273,7 +276,7 @@ class _AiBarcodeScannerState extends State<AiBarcodeScanner> {
           AppBar(
             backgroundColor: Colors.transparent,
             actions: [
-              if (widget.galleryButtonType == GalleryButtonType.icon) ...[
+              if (widget.showGalleryButton == true && widget.galleryButtonType == GalleryButtonType.icon) ...[
                 GalleryButton.icon(
                   onImagePick: widget.onImagePick,
                   onDetect: widget.onDetect,
@@ -353,6 +356,7 @@ class _AiBarcodeScannerState extends State<AiBarcodeScanner> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
+                    if (widget.showGalleryButton)
                     GalleryButton(
                       onImagePick: widget.onImagePick,
                       onDetect: widget.onDetect,
